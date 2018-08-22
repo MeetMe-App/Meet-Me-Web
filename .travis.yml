@@ -4,15 +4,20 @@ language: node_js
 node_js:
   - "8.11.4"
 
-branches:
-  only:
-    - master
-
 before_script:
   - npm install -g @angular/cli
 
+addons:
+  sonarcloud:
+    organization: "Koziel101"
+    token:
+      secure: b265c47b899e2b07d57fdb2938632c16663fa202
+    branches:
+      - master
+
 script:
   - ng build --prod
+  #- sonar-scanner.bat -Dsonar.projectKey=meet-me -Dsonar.organization=meetme -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=b265c47b899e2b07d57fdb2938632c16663fa202
 
 notifications:
   email:
